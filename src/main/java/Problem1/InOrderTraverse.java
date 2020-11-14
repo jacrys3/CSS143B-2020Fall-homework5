@@ -6,19 +6,21 @@ import java.util.Stack;
 
 public class InOrderTraverse {
     public static List<Integer> inorderTraversalIterative(TreeNode<Integer> root) {
-        // homework
         List<Integer> result = new ArrayList<>();
+        if(root == null) return result;
+
         Stack<TreeNode<Integer>> tmp = new Stack<>();
         TreeNode<Integer> temp = root;
-        while(temp != null && !tmp.isEmpty()) {
-            tmp.push(temp);
-            temp = temp.left;
-            if (temp == null) {
-                TreeNode<Integer> pop = tmp.pop();
-                result.add(pop.val);
-                temp = pop.right;
+
+        while(temp != null || tmp.size() > 0) {
+            while(temp != null){
+                tmp.push(temp);
+                temp = temp.left;
             }
+            temp = tmp.pop();
+            result.add(temp.val);
+            temp = temp.right;
         }
-        return result;  // place holder
+        return result;
     }
 }
