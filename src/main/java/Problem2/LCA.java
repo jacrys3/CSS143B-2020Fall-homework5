@@ -15,7 +15,9 @@ public class LCA {
             return root;
         }
         //help from geeksforgeeks.com
-        TreeNode<Integer> result = ((left == null) ? right : left);
-        return result;
+        TreeNode<Integer> result;
+        if(left == null) return right;
+        return left;
+
     }
 }
