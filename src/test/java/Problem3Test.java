@@ -182,9 +182,13 @@ public class Problem3Test {
         //    N   N
         // homework
         // what problem can you see for insertInBst from this test case?
-        // answer:
+        // answer: The new TreeNodes will always be greater so it will only move to the right
+        // and the tree will have 5 levels. This means a lot of recursion will be called and that can be hard on
+        // the memory.
         // discuss how you would solve it in a comment below
-        // answer:
+        // answer: If there were say 3 levels already only on the right side, i would change the root to the second
+        // level node and then go on from there and every so often if one side gets unbalanced like that again,
+        // i would move the root again.
         root = new TreeNode<>(1);
         testCases.add(new BSTTestCase<>(root, 2, Arrays.asList(1, 2)));
         testCases.add(new BSTTestCase<>(root, 3, Arrays.asList(1, 2, 3)));
