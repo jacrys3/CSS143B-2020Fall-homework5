@@ -14,9 +14,10 @@ public class InsertInBST {
 
         if(valToInsert < root.val){
             root.left = insertHelper(root.left, valToInsert);
-        } else if(valToInsert > root.val){
+        } else if(valToInsert >= root.val){
             root.right = insertHelper(root.right, valToInsert);
         }
+
         return root;
     }
 }
