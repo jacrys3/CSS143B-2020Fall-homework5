@@ -1,3 +1,4 @@
+import Problem1.InOrderTraverse;
 import Problem1.TreeNode;
 import Problem3.InsertInBST;
 import org.junit.Test;
@@ -34,8 +35,43 @@ public class Problem3Test {
 
     @Test
     public void testInOrderTraverse() {
-        // homework
-        // to verify inOrderTraverse(TreeNode<Integer> node)
+        List<BSTTestCase<Integer>> testCases = getBSTTestCases();
+
+        int[][] tests = {
+                {0, 1},
+                {1, 1},
+                {1, 2},
+                {1, 2, 3},
+                {1, 2, 3},
+                {0, 1, 2},
+                {1, 2, 4, 6},
+                {2, 3, 4, 6},
+                {2, 4, 5, 6},
+                {2, 4, 6, 7},
+                {3, 4, 5, 6, 9, 10, 13},
+                {3, 4, 5, 6, 9, 10, 11, 13},
+                {2, 3, 4, 5, 6, 9, 10, 11, 13},
+                {2, 3, 4, 5, 6, 9, 10, 11, 13, 15},
+                {1, 2},
+                {1, 2, 3},
+                {1, 2, 3, 4},
+                {1, 2, 3, 4, 5}
+
+        };
+
+        int count = 0;
+        for (BSTTestCase<Integer> testCase : testCases) {
+            InsertInBST.insert(testCase.tree, testCase.valueToInsert);
+            List<Integer> actual = inOrderTraverse(testCase.tree);
+
+            assertEquals(tests[count].length, actual.size()); //testing if the lengths of the lists are the same.
+
+            for (int i = 0; i < tests[count].length; i++) {
+                // testing each value in the lists to see if they are equal.
+                assertEquals(tests[count][i], (int) actual.get(i));
+            }
+            count++;
+        }
     }
 
     private static List<Integer> inOrderTraverse(TreeNode<Integer> node) {
@@ -146,9 +182,13 @@ public class Problem3Test {
         //    N   N
         // homework
         // what problem can you see for insertInBst from this test case?
-        // answer:
+        // answer: The new TreeNodes will always be greater so it will only move to the right
+        // and the tree will have 5 levels. This means a lot of recursion will be called and that can be hard on
+        // the memory.
         // discuss how you would solve it in a comment below
-        // answer:
+        // answer: If there were say 3 levels already only on the right side, i would change the root to the second
+        // level node and then go on from there and every so often if one side gets unbalanced like that again,
+        // i would move the root again.
         root = new TreeNode<>(1);
         testCases.add(new BSTTestCase<>(root, 2, Arrays.asList(1, 2)));
         testCases.add(new BSTTestCase<>(root, 3, Arrays.asList(1, 2, 3)));
